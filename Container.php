@@ -2,6 +2,9 @@
 
 class Container
 {
+    private function __construct()
+    {
+    }
 
     private $instances = array();
 
@@ -54,6 +57,15 @@ class Container
     public function debug()
     {
         var_dump($this->instances);
+    }
+
+    static $instance = null;
+
+    static function get() {
+        if(self::$instance == null) {
+            self::$instance = new Container();
+        }
+        return self::$instance;
     }
 }
 
